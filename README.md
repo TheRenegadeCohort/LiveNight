@@ -14,7 +14,8 @@ We are going to take an opportunity to remind ourselves why we're in this progra
 
 So it's time to take this Charlie Brown Christmas tree of a website, really around it and solidify our place in the annals of CodeSmith as the overachiever cohort by submitting a Pull Request to one of our instructor's projects.
 
-- If you would like to contribute, fork and clone this repo. Commit often and submit pull requests to the master branch of this repo. All PRs will be reviewed manually... because we haven't gone over the CI/CD lessons yet.
+- If you would like to contribute, fork and clone this repo. Commit often and submit pull requests to the master branch of this repo. All PRs will be reviewed manually... because we haven't gone over the CI/CD lessons yet. Set this repo as UPSTREAM and then run the following command: 
+  $ git remote set-url --push upstream DISABLED
 
 - All feature requests and suggestions should go into the issues section of this repo.
 
