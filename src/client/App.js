@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import './app.css';
 import LoginBox from './components/LoginBox';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       user: 'Kyle'
     }
 
@@ -14,14 +16,14 @@ class App extends Component {
 
   }
 
-
-
   render() {
 
-    return (
-      <div>
-        <LoginBox />
-      </div>
+    return ( <
+      div >
+      <
+      LoginBox / >
+      <
+      /div>
     )
   }
 

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const outputDir = 'dist';
 
@@ -11,24 +12,23 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       },
       {
         test: /\.css$$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|ttf|svg|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: { limit: 8192 }
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192
           }
-        ]
+        }]
       }
     ]
   },
@@ -40,10 +40,11 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin([outputDir]),
+    // new CleanWebpackPlugin([outputDir]),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       // favicon: './public/favicon.png'
-    })
+    }),
+    new Dotenv()
   ]
 }
