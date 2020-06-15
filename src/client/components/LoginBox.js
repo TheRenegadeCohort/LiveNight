@@ -5,6 +5,8 @@ import spotifyConnect from "../assets/spotifyConnect.png";
 const LoginBox = (props) => {
   const client_id = process.env.REACT_APP_CLIENT_ID;
   const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
+  // TO DO: add scope to this so we can have access to stuff like modify their
+  // public and/or private playlists, etc
   const url = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&state=34fFs29kd09`;
 
   return (

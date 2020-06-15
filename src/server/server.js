@@ -28,8 +28,12 @@ app.get('/callback', (req, res, next) => {
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .then(data => {
       console.log('superagent success')
-      const access_token = data.body.access_token;
       // TODO: SEND ACCESS TOKEN TO FRONT END OR SAVE IT SOMEWHERE
+      // WE NEED THIS LATER TO GET SPOTIFY USER INFO LIKE THEIR PLAYLISTS
+
+      // TODO #2: Figure out WHEN we grab their data and send it back to front-end
+      // (can't figure out how to do that WITH the redirect after spotify login right now)
+      const access_token = data.body.access_token;
 
       // REDIRECTS THE USER BACK TO TO REACT HOMEPAGE AFTER SPOTIFY SIGNIN
       return res.redirect(`http://localhost:3000/`)
