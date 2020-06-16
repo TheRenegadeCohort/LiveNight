@@ -1,0 +1,68 @@
+ideas: 
+
+- ability to 'like' a song
+- find out more about the artist (from spotify or other?)
+- handle bands not on spotify
+- 
+
+
+implementation:
+- group programming
+- group slack channel
+
+MVP: 
+
+Base functionality:
+    - Find artists who will be performing in a selected city
+    - Create a playlist of those artists to be played in the browser
+        - Play the artist directly
+
+Additional options:
+    - Link to purchase tickets
+    - Link to youtube for unfound bands
+
+
+
+- backend
+    - Oauth (spotify and songkick)
+    - Express
+
+    - Alex
+    - Steve B
+    - Hamoud
+    - Ed
+    - Eelan
+
+- frontend
+    - React components / state management
+    - Sass
+
+    - Nicole
+    - Garrett
+    - Nay
+    - Cameron
+    - Kevin
+    - Wayne (Local Singer / Songwriter)
+
+- design (ui / ux)
+    - UI / UX / CSS / ETC...
+
+    - Phil - Tiger Function Specialist (double nomination)
+    - Vika (Callsign: LOUDSPEAKER)
+    - Jeho (Let's Go Specialist, Keeper of Legends)
+
+
+
+    BACKEND API:
+    1. Serve initial site
+    2. Provide the spotify Oauth
+    3. Provide songkick data
+    4. 
+
+    FRONTEND REQUESTS:
+    1. Spotify Auth
+    2. Location of user
+
+
+
+// DEFINE YOUR ENDPOINTS - PROVIDE A SCHEMA //
