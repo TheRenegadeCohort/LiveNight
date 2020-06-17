@@ -2,9 +2,7 @@ language: node_js
 node_js:
   - '12'
 env:
-  - 'REDIRECT_URI=EXISTS'
-  - 'CLIENT_ID=EXISTS'
-  - 'CLIENT_SECRET=EXISTS'
+  - REDIRECT_URI=EXISTS CLIENT_ID=EXISTS CLIENT_SECRET=EXISTS
 install:
   - echo 'Installing Deps'
   - npm install
