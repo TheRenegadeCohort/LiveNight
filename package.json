@@ -9,7 +9,8 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/server.js",
     "start-dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "jest --watchAll"
+    "test": "jest",
+    "test-dev": "jest --watchAll"
   },
   "keywords": [],
   "author": "Kyle Combs",
