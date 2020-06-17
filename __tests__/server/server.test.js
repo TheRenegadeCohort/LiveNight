@@ -3,7 +3,6 @@ const dotenv = require('dotenv').config();
 const nock = require('nock');
 
 const app = require('../../src/server/app');
-const { response } = require('express');
 
 const request = supertest(app);
 
@@ -51,7 +50,6 @@ describe('GET /callback', () => {
       .expect('Location', /access_token/g, done);
   });
 });
-
 describe('GET /callback Error Handling', () => {
   it('should respond with an error when Spotify fails', (done) => {
     const FORBIDDEN = 403;

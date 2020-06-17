@@ -50,22 +50,19 @@ app.get('/callback', (req, res, next) => {
 });
 
 app.get('/artist/:artist', spotifyController.getArtistId, (req, res, next) => {
-  console.log(res.locals.artist_id);
+  // console.log(res.locals.artist_id);
 
   // TEMP
   // TODO: get artist top tracks
   return res.status(200).json({
-    artist: res.locals.artist_id
-  })
-})
+    artist: res.locals.artist_id,
+  });
+});
 
 app.use((err, req, res, next) => {
-  const {
-    status,
-    message
-  } = err.err;
+  const { status, message } = err.err;
   res.status(status).json({
-    message: message
+    message: message,
   });
 });
 
