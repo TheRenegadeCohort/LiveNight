@@ -2,6 +2,7 @@ const express = require('express');
 const superagent = require('superagent');
 const dotenv = require('dotenv');
 const path = require('path');
+const spotifyController = require('./spotifyController');
 
 // set up dotenv
 dotenv.config();
@@ -48,10 +49,24 @@ app.get('/callback', (req, res, next) => {
     });
 });
 
+app.get('/artist/:artist', spotifyController.getArtistId, (req, res, next) => {
+  console.log(res.locals.artist_id);
+
+  // TEMP
+  // TODO: get artist top tracks
+  return res.status(200).json({
+    artist: res.locals.artist_id
+  })
+})
+
 app.use((err, req, res, next) => {
-  //   console.error(err.err.message);
-  const { status, message } = err.err;
-  res.status(status).json({ message: message });
+  const {
+    status,
+    message
+  } = err.err;
+  res.status(status).json({
+    message: message
+  });
 });
 
 // TO DO: ADD ERROR HANDLING
