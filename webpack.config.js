@@ -9,35 +9,42 @@ module.exports = {
   entry: './src/client/index.js',
   output: {
     path: path.join(__dirname, outputDir),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['', 'js', 'jsx'],
+    modules: ['node_modules', 'src', 'public', 'assets'],
   },
   module: {
-    rules: [{
-        test: /\.js$/,
+    rules: [
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
-        test: /\.css$$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|ttf|svg|jpg|gif)$/i,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8192
-          }
-        }]
-      }
-    ]
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
+    ],
   },
   devServer: {
     port: 3000,
     open: true,
     proxy: {
-      '/api': 'http://localhost:8080'
-    }
+      '/api': 'http://localhost:8080',
+    },
   },
   plugins: [
     // new CleanWebpackPlugin([outputDir]),
@@ -45,6 +52,6 @@ module.exports = {
       template: './public/index.html',
       // favicon: './public/favicon.png'
     }),
-    new Dotenv()
-  ]
-}
+    new Dotenv(),
+  ],
+};

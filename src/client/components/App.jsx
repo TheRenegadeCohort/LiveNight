@@ -1,9 +1,6 @@
-import React, {
-  Component
-} from 'react';
-import './app.css';
-import LoginBox from './components/LoginBox';
-
+import React, { Component } from 'react';
+import '../app.css';
+import LoginBox from './LoginBox.jsx';
 
 // render top component as app.js
 
@@ -11,21 +8,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 'Kyle'
- 
-    }
+      user: 'Kyle',
+    };
 
     //bind functions
-
-
   }
 
   render() {
-   
-    return ( <div >
-      <LoginBox/>
+    return (
+      <div>
+        <LoginBox />
       </div>
-    )
+    );
   }
 }
 
