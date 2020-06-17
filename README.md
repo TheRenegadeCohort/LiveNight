@@ -1,3 +1,6 @@
+LIVE NIGHT [![Build Status](https://travis-ci.com/TheRenegadeCohort/LiveNight.svg?branch=master)](https://travis-ci.com/TheRenegadeCohort/LiveNight)
+
+
 Hello Cohort 19!
 
 You've been selected for a secret project.
