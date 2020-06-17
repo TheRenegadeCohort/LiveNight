@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - '12'
+os: 
+  - linux
+dist: 
+  - xenial
 env:
   - REDIRECT_URI=EXISTS CLIENT_ID=EXISTS CLIENT_SECRET=EXISTS
 install:
