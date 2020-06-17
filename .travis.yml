@@ -1,9 +1,22 @@
 language: node_js
 node_js:
   - '12'
-script:
-  - echo 'Build starting!!'
-  - echo 'Installing Deps!'
+env:
+  - 'REDIRECT_URI=EXISTS'
+  - 'CLIENT_ID=EXISTS'
+  - 'CLIENT_SECRET=EXISTS'
+install:
+  - echo 'Installing Deps'
   - npm install
+script:
   - echo 'Running Tests!'
   - npm test
+notifications:
+  email:
+    - TheRenegadeCohort@gmail.com
+  email:
+    recipients:
+      - sbudarz@gmail.com
+      - TheRenegadeCohort@gmail.com
+    on_success: always
+    on_failure: always

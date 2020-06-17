@@ -13,14 +13,14 @@ describe('sanity check test', () => {
   });
 });
 
-// describe('ENV variables', () => {
-//   it('should have defined environmental variables', () => {
-//     expect(process.env.REDIRECT_URI).toBeDefined();
-//     expect(process.env.CLIENT_ID).toBeDefined();
-//     expect(process.env.CLIENT_SECRET).toBeDefined();
-//     expect(process.env.TACO_PARTY).toBeUndefined();
-//   });
-// });
+describe('ENV variables', () => {
+  it('should have defined environmental variables', () => {
+    expect(process.env.REDIRECT_URI).toBeDefined();
+    expect(process.env.CLIENT_ID).toBeDefined();
+    expect(process.env.CLIENT_SECRET).toBeDefined();
+    expect(process.env.TACO_PARTY).toBeUndefined();
+  });
+});
 
 describe('GET /test', () => {
   it('should respond to a request', (done) => {
