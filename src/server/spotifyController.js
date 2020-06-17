@@ -14,7 +14,8 @@ spotifyController.getArtistId = (req, res, next) => {
     limit: 1
   };
 
-  const access_token = 'BQD7SKZ9q3UBoY99HUOhe9NfViudPT7nG9RGdEa3Rtomldj6EVGMDyKzRmic8qsbN9fnhoeKpXDKanqm0Aen10vw6TeE-uXDd0OCFuk0_c5zDU1-b-tib53qeq_3njbyXWXTQmOg7eEQ';
+  // for now -- go to the localhost front end to get access token and paste it here:
+  const access_token = '';
 
   superagent
     .get("https://api.spotify.com/v1/search")
