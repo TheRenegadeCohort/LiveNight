@@ -8,14 +8,16 @@ dotenv.config();
 
 const app = express();
 
+// Serves the React App after compiled through Babel
 app.use(express.static('dist'));
 
+// Endpoint for test only
 app.get('/test', (req, res) => {
   res.sendStatus(200);
 });
 
+// after user logs into spotify, spotify will redirect here
 app.get('/callback', (req, res, next) => {
-  // after user logs into spotify, spotify will redirect here
   // will receive authorization code at req.query.code
   const body = {
     grant_type: 'authorization_code',
@@ -31,25 +33,25 @@ app.get('/callback', (req, res, next) => {
     .send(body)
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .then((data) => {
-      //   console.log('superagent success');
-      // TODO: SEND ACCESS TOKEN TO FRONT END OR SAVE IT SOMEWHERE
-      // WE NEED THIS LATER TO GET SPOTIFY USER INFO LIKE THEIR PLAYLISTS
-
-      // TODO #2: Figure out WHEN we grab their data and send it back to front-end
-      // (can't figure out how to do that WITH the redirect after spotify login right now)
       const access_token = data.body.access_token;
 
       // REDIRECTS THE USER BACK TO TO REACT HOMEPAGE AFTER SPOTIFY SIGNIN
+      // INCLUDES THE ACCESS TOKEN IN QUERY PARAMS
       return res.redirect(
         `http://localhost:3000/?access_token=${access_token}`
       );
     })
     .catch((err) => {
-      console.log(err);
       next({
         err,
       });
     });
+});
+
+app.use((err, req, res, next) => {
+  //   console.error(err.err.message);
+  const { status, message } = err.err;
+  res.status(status).json({ message: message });
 });
 
 // TO DO: ADD ERROR HANDLING

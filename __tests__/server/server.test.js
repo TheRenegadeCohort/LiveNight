@@ -51,3 +51,11 @@ describe('GET /callback', () => {
       .expect('Location', /access_token/g, done);
   });
 });
+
+describe('GET /callback Error Handling', () => {
+  it('should respond with an error when Spotify fails', (done) => {
+    const FORBIDDEN = 403;
+    nock('https://accounts.spotify.com').post('/api/token').reply(FORBIDDEN);
+    request.get('/callback').expect(FORBIDDEN, done);
+  });
+});
