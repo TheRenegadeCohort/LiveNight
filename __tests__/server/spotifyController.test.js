@@ -15,9 +15,6 @@ describe('SPOTIFY CONTROLLER', () => {
       ],
     },
   };
-  //   beforeEach(() => {
-  //     nock('https://api.spotify.com').get('/v1/search');
-  //   });
 
   it('should send a request to spotify', (done) => {
     nock('https://api.spotify.com')

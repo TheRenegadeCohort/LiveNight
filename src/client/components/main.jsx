@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import "./main.css";
+import React, { Component } from 'react';
+import Banner from './banner';
+import './main.css';
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: "",
-      genre: "",
+      location: '',
+      genre: '',
     };
     //bind functions
     this.eventHandler = this.eventHandler.bind(this);
@@ -39,7 +40,11 @@ class Main extends Component {
           genre={this.state.genre}
           eventHandler={this.eventHandler}
         />
-        <MainBody location={this.state.location} genre={this.state.genre} />
+        <div
+          data-testid='main'
+          location={this.state.location}
+          genre={this.state.genre}
+        />
       </div>
     );
   }
