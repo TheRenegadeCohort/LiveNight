@@ -10,11 +10,12 @@ class Main extends Component {
       genre: '',
     };
     //bind functions
-    this.eventHandler = this.eventHandler.bind(this);
+    this.locationHandler = this.locationHandler.bind(this);
     this.genreHandler = this.genreHandler.bind(this);
   }
 
-  eventHandler(val) {
+  // location input
+  locationHandler(val) {
     //debug console.log if it doesn't work
     console.log(this.state.location);
     this.setState({
@@ -22,6 +23,7 @@ class Main extends Component {
     });
   }
 
+  //genre dropdown?
   genreHandler(val) {
     console.log(this.state.location);
     this.setState({
@@ -38,7 +40,7 @@ class Main extends Component {
         <Banner
           location={this.state.location}
           genre={this.state.genre}
-          eventHandler={this.eventHandler}
+          locationHandler={this.locationHandler}
         />
         <div
           data-testid='main'
