@@ -1,33 +1,16 @@
 import React, { Component } from "react";
 import "./main.css";
 
-class Main extends Component {
+class Band extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
+      time: "",
+      venue: "",
       location: "",
-      genre: "",
     };
     //bind functions
-    this.locationHandler = this.locationHandler.bind(this);
-    this.genreHandler = this.genreHandler.bind(this);
-  }
-
-  // location input
-  locationHandler(val) {
-    //debug console.log if it doesn't work
-    console.log(this.state.location);
-    this.setState({
-      location: val.target.id,
-    });
-  }
-
-  //genre dropdown?
-  genreHandler(val) {
-    console.log(this.state.location);
-    this.setState({
-      genre: val.target.id,
-    });
   }
 
   render() {
@@ -39,7 +22,7 @@ class Main extends Component {
         <Banner
           location={this.state.location}
           genre={this.state.genre}
-          locationHandler={this.locationHandler}
+          eventHandler={this.eventHandler}
         />
         <MainBody location={this.state.location} genre={this.state.genre} />
       </div>

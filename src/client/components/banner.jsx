@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+// need clickable icon for submit
+
 const Banner = props => {
   return (
     <div>
