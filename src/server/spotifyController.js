@@ -6,5 +6,6 @@ const spotifyController = { authFlow: {} };
 spotifyController.getArtistId = getArtistId;
 spotifyController.authFlow.callback = authFlow.callback;
 spotifyController.authFlow.isLoggedIn = authFlow.isLoggedIn;
+spotifyController.authFlow.signin = authFlow.signin;
 
 module.exports = spotifyController;

@@ -22,7 +22,7 @@ describe('SPOTIFY CONTROLLER', () => {
       .query(true)
       .reply(200, dummyJSONResponse);
 
-    request.get('/artist/testArtist').expect(200, done);
+    request.get('/api/artist/testArtist').expect(200, done);
   });
 
   it('should send a request to spotify with auth headers', (done) => {
@@ -34,7 +34,7 @@ describe('SPOTIFY CONTROLLER', () => {
         return [200, dummyJSONResponse];
       });
 
-    request.get('/artist/testArtist').expect(200, done);
+    request.get('/api/artist/testArtist').expect(200, done);
   });
 
   it('should include querystring in spotify request', (done) => {
@@ -47,12 +47,12 @@ describe('SPOTIFY CONTROLLER', () => {
       })
       .reply(200, dummyJSONResponse);
 
-    request.get('/artist/testArtist').expect(200, done);
+    request.get('/api/artist/testArtist').expect(200, done);
   });
 
   it('should respond with an error if spotify call fails', (done) => {
     nock('https://api.spotify.com').get('/v1/search').reply(403);
 
-    request.get('/artist/testArtist').expect(400, done);
+    request.get('/api/artist/testArtist').expect(400, done);
   });
 });
