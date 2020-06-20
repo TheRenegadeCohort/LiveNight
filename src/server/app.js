@@ -1,71 +1,58 @@
 const express = require('express');
-const superagent = require('superagent');
-const dotenv = require('dotenv');
 const path = require('path');
+const dotenv = require('dotenv');
 const spotifyController = require('./spotifyController');
+const cookieParser = require('cookie-parser');
 
+const app = express();
 // set up dotenv
 dotenv.config();
 
-const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
 // Serves the React App after compiled through Babel
 app.use(express.static('dist'));
 
 // Endpoint for test only
-app.get('/test', (req, res) => {
-  res.sendStatus(200);
-});
+app.get('/test', (req, res) => res.sendStatus(200));
 
 // after user logs into spotify, spotify will redirect here
-app.get('/callback', (req, res, next) => {
-  // will receive authorization code at req.query.code
-  const body = {
-    grant_type: 'authorization_code',
-    code: req.query.code,
-    redirect_uri: process.env.REDIRECT_URI,
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
-  };
+app.get('/callback', spotifyController.authFlow.callback);
 
-  // SOMEHOW SPOTIFY DIDN'T LIKE FETCH SO HAD TO USE SOMETHING ELSE
-  superagent
-    .post('https://accounts.spotify.com/api/token')
-    .send(body)
-    .set('Content-Type', 'application/x-www-form-urlencoded')
-    .then((data) => {
-      const access_token = data.body.access_token;
-
-      // REDIRECTS THE USER BACK TO TO REACT HOMEPAGE AFTER SPOTIFY SIGNIN
-      // INCLUDES THE ACCESS TOKEN IN QUERY PARAMS
-      return res.redirect(
-        `http://localhost:3000/?access_token=${access_token}`
-      );
-    })
-    .catch((err) => {
-      next({
-        err,
-      });
-    });
+app.get('/signin', spotifyController.authFlow.signin, (req, res) => {
+  res.redirect('/loggedin');
 });
 
-app.get('/artist/:artist', spotifyController.getArtistId, (req, res, next) => {
-  // console.log(res.locals.artist_id);
+app.get(
+  '/loggedin',
+  spotifyController.authFlow.isLoggedIn,
+  (req, res, next) => {
+    console.log('where do we go?');
+    next();
+  },
+  (req, res) => res.redirect('/')
+);
 
-  // TEMP
-  // TODO: get artist top tracks
-  return res.status(200).json({
-    artist: res.locals.artist_id,
-  });
+app.get('/api/auth', spotifyController.authFlow.isLoggedIn, (req, res) => {
+  res
+    .status(200)
+    .json({ loggedIn: true, access_token: res.locals.access_token });
 });
+
+app.get('/api/artist/:artist', spotifyController.getArtistId, (req, res) => {
+  return res.status(200).json({ artist: res.locals.artist_id });
+});
+
+app.use('*', (req, res) => res.sendStatus(404));
 
 app.use((err, req, res, next) => {
+  // console.log(err);
   const { status, message } = err.err;
-  res.status(status).json({
-    message: message,
-  });
+  res.status(status).json({ message });
 });
 
 // TO DO: ADD ERROR HANDLING
+// console.log(process.env); // prints fine
 
 module.exports = app;

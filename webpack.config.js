@@ -12,8 +12,8 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['', 'js', 'jsx'],
-    modules: ['node_modules', 'src', 'public', 'assets'],
+    extensions: ['.js', '.jsx'],
+    // modules: ['node_modules', 'src', 'public', 'assets'],
   },
   module: {
     rules: [

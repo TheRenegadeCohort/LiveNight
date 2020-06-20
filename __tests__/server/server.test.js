@@ -40,14 +40,14 @@ describe('GET /callback', () => {
     request
       .get('/callback')
       .query(queryCode)
-      .expect('Location', /localhost/g, done);
+      .expect('Location', /loggedin/g, done);
   });
 
   it('should respond to a request with an access token', (done) => {
     request
       .get('/callback')
       .query(queryCode)
-      .expect('Location', /access_token/g, done);
+      .expect('set-cookie', /token/, done);
   });
 });
 describe('GET /callback Error Handling', () => {
