@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const superagent = require('superagent');
 const spotifyAuthFlow = {};
 
 spotifyAuthFlow.callback = (req, res, next) => {
@@ -11,6 +12,8 @@ spotifyAuthFlow.callback = (req, res, next) => {
     client_secret: process.env.CLIENT_SECRET,
   };
 
+  const CLIENT_URL = process.env.CLIENT_URL;
+
   // SOMEHOW SPOTIFY DIDN'T LIKE FETCH SO HAD TO USE SOMETHING ELSE
   superagent
     .post('https://accounts.spotify.com/api/token')
@@ -21,11 +24,11 @@ spotifyAuthFlow.callback = (req, res, next) => {
       jwt.sign(
         { access_token },
         process.env.JWT_SIGNING_SECRET,
-        { httpOnly: true },
+        { expiresIn: 1000 * 60 * 55 },
         (err, token) => {
           if (err) return next(err);
-          res.cookie(token);
-          return res.redirect(`http://localhost:3000/`);
+          res.cookie('access_token', token, { httpOnly: true });
+          return res.redirect(`${CLIENT_URL}/signedin`);
         }
       );
     })
@@ -37,12 +40,20 @@ spotifyAuthFlow.callback = (req, res, next) => {
 };
 
 spotifyAuthFlow.isLoggedIn = (req, res, next) => {
-  if (req.cookies) {
-    jwt.verify(req.cookies, process.env.JWT_SIGNING_SECRET, (err, decoded) => {
-      if (err) return res.redirect('/');
-      res.locals.access_token = decoded.access_token;
-      next();
-    });
+  if (req.cookies.access_token) {
+    console.log('has cookie');
+    jwt.verify(
+      req.cookies.access_token,
+      process.env.JWT_SIGNING_SECRET,
+      (err, decoded) => {
+        if (err) return res.redirect('/');
+        console.log('cookie good');
+        res.locals.access_token = decoded.access_token;
+        return next();
+      }
+    );
+  } else {
+    return res.redirect('/signin');
   }
 };
 
